@@ -1,26 +1,10 @@
 import React, { Component } from "react";
 import Table from "./Table";
+import Form from "./Form";
 
 class App extends Component {
   state = {
-    characters: [
-      {
-        name: "Charlie",
-        job: "Janitor",
-      },
-      {
-        name: "Mac",
-        job: "Bouncer",
-      },
-      {
-        name: "Dee",
-        job: "Aspring actress",
-      },
-      {
-        name: "Dennis",
-        job: "Bartender",
-      },
-    ],
+    characters: [],
   };
 
   removeData = (index) => {
@@ -33,11 +17,18 @@ class App extends Component {
     });
   };
 
+  handleSubmit = (data) => {
+    this.setState({
+      characters: [...this.state.characters, data],
+    });
+  };
+
   render() {
     const { characters } = this.state;
     return (
       <div>
         <Table data={characters} removeData={this.removeData} />
+        <Form handleSubmit={this.handleSubmit} />
       </div>
     );
   }
